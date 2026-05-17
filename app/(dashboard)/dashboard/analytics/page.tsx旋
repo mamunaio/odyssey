@@ -1,0 +1,55 @@
+import { BarChart3, TrendingUp, Users, Zap } from 'lucide-react'
+
+export default function AnalyticsPage() {
+  return (
+    <div className="max-w-6xl mx-auto space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold text-surface-950">Analytics</h1>
+        <p className="text-surface-500 text-sm mt-0.5">Real-time insights for your workspace</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="card p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
+          <div className="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center mb-4">
+            <BarChart3 className="w-6 h-6 text-brand-600" />
+          </div>
+          <h2 className="text-lg font-semibold text-surface-900 mb-2">Usage metrics</h2>
+          <p className="text-sm text-surface-500 max-w-[200px]">
+            Detailed charts and usage patterns will appear here.
+          </p>
+        </div>
+
+        <div className="card p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
+          <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mb-4">
+            <TrendingUp className="w-6 h-6 text-green-600" />
+          </div>
+          <h2 className="text-lg font-semibold text-surface-900 mb-2">Growth tracking</h2>
+          <p className="text-sm text-surface-500 max-w-[200px]">
+            Monitor your workspace growth and user engagement.
+          </p>
+        </div>
+
+        <div className="card p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
+          <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-4">
+            <Users className="w-6 h-6 text-purple-600" />
+          </div>
+          <h2 className="text-lg font-semibold text-surface-900 mb-2">Team activity</h2>
+          <p className="text-sm text-surface-500 max-w-[200px]">
+            See how your team is collaborating in real-time.
+          </p>
+        </div>
+      </div>
+
+      <div className="card p-8 bg-surface-900 text-white overflow-hidden relative">
+        <div className="relative z-10">
+          <h2 className="text-xl font-bold mb-2">Advanced Analytics</h2>
+          <p className="text-surface-400 text-sm mb-6 max-w-md">
+            Unlock deeper insights, custom reports, and data exports with our Enterprise plan.
+          </p>
+          <button className="btn-primary border-none">Upgrade to Pro</button>
+        </div>
+        <Zap className="absolute top-1/2 right-8 -translate-y-1/2 w-48 h-48 text-white/5 rotate-12" />
+      </div>
+    </div>
+  )
+}

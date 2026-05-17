@@ -1,0 +1,87 @@
+'use client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Loader2 } from 'lucide-react'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
+
+export default function RegisterPage() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({
+    name: '', email: '', password: '', companyName: '',
+  })
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setLoading(true)
+
+    const res = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+
+    const data = await res.json()
+
+    if (!data.success) {
+      toast.error(data.error ?? 'Registration failed')
+      setLoading(false)
+      return
+    }
+
+    // Auto sign in after registration
+    await signIn('credentials', {
+      email: form.email, password: form.password, redirect: false,
+    })
+
+    toast.success('Workspace created! Welcome 🎉')
+    router.push('/dashboard')
+  }
+
+  return (
+    <div className="min-h-screen bg-surface-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <Link href="/" className="text-2xl font-bold text-brand-600">SaaSFlow</Link>
+          <p className="text-surface-500 mt-2 text-sm">Create your workspace</p>
+        </div>
+
+        <div className="card p-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[
+              { name: 'companyName', label: 'Company name', placeholder: 'Acme Inc.', type: 'text' },
+              { name: 'name',        label: 'Your name',    placeholder: 'John Doe',  type: 'text' },
+              { name: 'email',       label: 'Work email',   placeholder: 'you@company.com', type: 'email' },
+              { name: 'password',    label: 'Password',     placeholder: 'Min 8 characters', type: 'password' },
+            ].map(({ name, label, placeholder, type }) => (
+              <div key={name}>
+                <label className="block text-xs font-medium text-surface-700 mb-1.5">{label}</label>
+                <input name={name} type={type} className="input-field" placeholder={placeholder}
+                  value={form[name as keyof typeof form]}
+                  onChange={handleChange} required minLength={name === 'password' ? 8 : 2} />
+              </div>
+            ))}
+
+            <button type="submit" disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 mt-2">
+              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Creating workspace...</> : 'Create free workspace'}
+            </button>
+          </form>
+
+          <p className="text-xs text-surface-400 text-center mt-4">
+            By signing up you agree to our Terms and Privacy Policy
+          </p>
+        </div>
+
+        <p className="text-center text-sm text-surface-500 mt-4">
+          Already have an account? <Link href="/login" className="text-brand-600 hover:underline font-medium">Sign in</Link>
+        </p>
+      </div>
+    </div>
+  )
+}
