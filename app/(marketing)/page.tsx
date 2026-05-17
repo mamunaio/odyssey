@@ -423,7 +423,10 @@ export default function LandingPage() {
                     </li>
                   ))}
                </ul>
-               <Link href={`/register?plan=${plan.n.toLowerCase()}`} className={cn(
+               <Link 
+                 href={plan.pM === 'Custom' ? 'https://calendly.com/your-username' : `/register?plan=${plan.n.toLowerCase()}`} 
+                 target={plan.pM === 'Custom' ? '_blank' : undefined}
+                 className={cn(
                   "w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest text-center transition-all shadow-xl hover:scale-[1.02] active:scale-[0.98] cursor-pointer",
                   plan.popular ? "bg-brand-600 text-white hover:bg-brand-700 hover:shadow-brand-600/30" : "bg-surface-950 dark:bg-white/10 text-white dark:text-white hover:bg-brand-600 dark:hover:bg-white/20"
                )}>
@@ -444,9 +447,9 @@ export default function LandingPage() {
                 <p className="text-surface-600 dark:text-white/60 font-medium">White-glove migration in under 1 day with our onboarding team.</p>
               </div>
            </div>
-           <button className="px-6 py-3 rounded-xl border border-surface-200 dark:border-white/10 bg-white dark:bg-transparent text-surface-800 dark:text-white font-black text-xs uppercase tracking-widest hover:bg-surface-50 dark:hover:bg-white/10 hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer">
+           <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl border border-surface-200 dark:border-white/10 bg-white dark:bg-transparent text-surface-800 dark:text-white font-black text-xs uppercase tracking-widest hover:bg-surface-50 dark:hover:bg-white/10 hover:scale-105 active:scale-95 transition-all shrink-0 cursor-pointer block text-center">
              Talk to an expert
-           </button>
+           </a>
         </div>
       </section>
 
@@ -562,7 +565,7 @@ export default function LandingPage() {
               <ul className="space-y-4 text-base font-bold text-surface-500 hover:text-surface-950 dark:text-white/50">
                 <li><Link href="/about" className="hover:text-surface-900 dark:hover:text-white transition-colors">About Us</Link></li>
                 <li><Link href="/careers" className="hover:text-surface-900 dark:hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/contact" className="hover:text-surface-900 dark:hover:text-white transition-colors">Contact Sales</Link></li>
+                <li><a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" className="hover:text-surface-900 dark:hover:text-white transition-colors">Contact Sales</a></li>
                 <li><Link href="/privacy" className="hover:text-surface-900 dark:hover:text-white transition-colors">Privacy & Terms</Link></li>
               </ul>
            </div>
