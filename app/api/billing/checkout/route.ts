@@ -19,7 +19,9 @@ export async function POST(req: Request) {
     const tenantId = (session.user as { tenantId: string }).tenantId
     await connectDB()
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+    const host = req.headers.get('x-forwarded-host') || req.headers.get('host')
+    const protocol = req.headers.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https')
+    const appUrl = host ? `${protocol}://${host}` : (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000')
 
     // 1. Detect if the Stripe API key is the dummy placeholder
     const stripeKey = process.env.STRIPE_SECRET_KEY || ''
