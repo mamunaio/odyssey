@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils'
 import toast from 'react-hot-toast'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import useSWR from 'swr'
+
 interface TopBarProps {
   user: { name?: string; email?: string; image?: string }
 }
@@ -21,7 +23,10 @@ interface Notification {
   read: boolean
 }
 
+const fetcher = (url: string) => fetch(url).then(r => r.json()).then(d => d.data)
+
 export default function TopBar({ user }: TopBarProps) {
+  const { data: tenant } = useSWR('/api/tenant', fetcher)
   const [notifications, setNotifications] = useState<Notification[]>([
     { id: '1', title: 'System Update', desc: 'Odyssey v2.4 is now live with better RLS.', type: 'info', time: '2m ago', read: false },
     { id: '2', title: 'Security Alert', desc: 'New login detected from Tokyo, Japan.', type: 'warning', time: '1h ago', read: false },
@@ -167,7 +172,9 @@ export default function TopBar({ user }: TopBarProps) {
               </div>
               <div className="text-left hidden sm:block">
                 <p className="text-sm font-black text-surface-950 dark:text-white leading-none">{user.name}</p>
-                <p className="text-[10px] font-black uppercase tracking-widest text-surface-400 dark:text-white/40 mt-1 leading-none">Pro Plan</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-surface-400 dark:text-white/40 mt-1 leading-none">
+                  {tenant?.plan ? `${tenant.plan} Plan` : '...'}
+                </p>
               </div>
               <ChevronDown className="w-4 h-4 text-surface-400 dark:text-white/40 group-hover:text-surface-900 dark:group-hover:text-white transition-colors" />
             </button>
