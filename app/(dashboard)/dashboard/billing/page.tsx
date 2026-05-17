@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Check, Zap, CreditCard, ShieldCheck, HelpCircle, Volume2, AlertTriangle, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
@@ -36,6 +36,28 @@ export default function BillingPage() {
   const router = useRouter()
   const [showDowngradeModal, setShowDowngradeModal] = useState<PlanType | null>(null)
   const [processing, setProcessing] = useState(false)
+  const [processingPortal, setProcessingPortal] = useState(false)
+
+  // Handlers for development/demo simulated Stripe parameters
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('simulated_success') === 'true') {
+      const planName = params.get('plan') || 'PRO'
+      toast.success(`[DEMO MODE] Workspace upgraded to ${planName.toUpperCase()} successfully!`, {
+        duration: 5000,
+        icon: '🚀'
+      })
+      mutate() // Trigger local SWR cache revalidation
+      router.replace('/dashboard/billing')
+    } else if (params.get('simulated_portal') === 'true') {
+      toast.success(`[DEMO MODE] Stripe Portal loaded! In production, users manage receipts and payment methods here.`, {
+        duration: 7000,
+        icon: '💳'
+      })
+      router.replace('/dashboard/billing')
+    }
+  }, [router, mutate])
 
   const playSynthesizedSound = useCallback((type: 'success' | 'alert') => {
     try {
@@ -75,8 +97,42 @@ export default function BillingPage() {
       playSynthesizedSound('alert')
       setShowDowngradeModal(selectedPlan)
     } else {
-      // Upgrade detected - redirect to checkout
-      router.push(`/dashboard/billing/checkout?plan=${selectedPlan}`)
+      // Upgrade/New Checkout detected - invoke Stripe Checkout API
+      setProcessing(true)
+      playSynthesizedSound('success')
+      try {
+        const res = await fetch('/api/billing/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan: selectedPlan })
+        })
+        const data = await res.json()
+        if (data.success && data.url) {
+          window.location.href = data.url
+        } else {
+          throw new Error(data.error || 'Failed to initiate checkout')
+        }
+      } catch (err: any) {
+        toast.error(err.message || 'Failed to redirect to payment gateway')
+        setProcessing(false)
+      }
+    }
+  }
+
+  async function handleManageBilling() {
+    setProcessingPortal(true)
+    playSynthesizedSound('success')
+    try {
+      const res = await fetch('/api/billing/portal', { method: 'POST' })
+      const data = await res.json()
+      if (data.success && data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error(data.error || 'Failed to open billing portal')
+      }
+    } catch (err: any) {
+      toast.error(err.message || 'Billing portal is currently unavailable')
+      setProcessingPortal(false)
     }
   }
 
@@ -111,15 +167,31 @@ export default function BillingPage() {
     <div className="max-w-6xl mx-auto space-y-12 pb-20">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">Billing & Plans</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">Billing & Plans</h1>
+          <p className="text-surface-400 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
             <CreditCard className="w-3.5 h-3.5" /> Managed by Odyssey Finance
           </p>
         </div>
-        <div className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-brand-600/10 border border-brand-600/20">
-           <Volume2 className="w-4 h-4 text-brand-500" />
-           <span className="text-[10px] font-black uppercase tracking-widest text-brand-500">Active plan:</span>
-           <span className="text-xs font-black uppercase tracking-widest text-white">{tenant?.plan || 'Loading...'}</span>
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-brand-600/10 border border-brand-600/20">
+             <Volume2 className="w-4 h-4 text-brand-500" />
+             <span className="text-[10px] font-black uppercase tracking-widest text-brand-500">Active plan:</span>
+             <span className="text-xs font-black uppercase tracking-widest text-surface-950 dark:text-white">{tenant?.plan || 'Loading...'}</span>
+          </div>
+          {tenant?.stripeCustomerId && (
+            <button
+              onClick={handleManageBilling}
+              disabled={processingPortal || processing}
+              className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white dark:bg-white/5 border border-surface-200 dark:border-white/10 hover:border-surface-300 dark:hover:border-white/20 hover:bg-surface-50 dark:hover:bg-white/10 text-surface-700 dark:text-white font-black text-[10px] uppercase tracking-widest transition-all cursor-pointer shadow-sm hover:shadow disabled:opacity-50"
+            >
+              {processingPortal ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <CreditCard className="w-3.5 h-3.5 text-brand-500" />
+              )}
+              Manage Billing & Receipts
+            </button>
+          )}
         </div>
       </div>
 
@@ -135,12 +207,14 @@ export default function BillingPage() {
               key={key} 
               className={cn(
                 "p-1 rounded-[3rem] transition-all duration-500 group relative",
-                isCurrent ? "bg-brand-600 shadow-[0_0_80px_-20px_rgba(139,92,246,0.3)]" : "bg-white/5 border border-white/10 hover:border-brand-600/50"
+                isCurrent 
+                  ? "bg-brand-600 shadow-[0_20px_50px_rgba(139,92,246,0.25)]" 
+                  : "bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] dark:shadow-none hover:border-brand-600/50 hover:bg-brand-600/10 transition-all duration-300"
               )}
             >
               <div className={cn(
                 "rounded-[2.8rem] p-10 h-full flex flex-col relative overflow-hidden",
-                isCurrent ? "bg-brand-600" : "bg-surface-900/40"
+                isCurrent ? "bg-brand-600" : "bg-white dark:bg-surface-900/40"
               )}>
                 {isCurrent && (
                   <div className="absolute top-8 right-8">
@@ -148,17 +222,23 @@ export default function BillingPage() {
                   </div>
                 )}
                 
-                <h3 className="text-2xl font-black mb-1 text-white">{name}</h3>
+                <h3 className={cn(
+                  "text-2xl font-black mb-1",
+                  isCurrent ? "text-white" : "text-surface-950 dark:text-white"
+                )}>{name}</h3>
                 <p className={cn(
                   "text-xs font-bold uppercase tracking-widest mb-10",
-                  isCurrent ? "text-white/70" : "text-white/30"
+                  isCurrent ? "text-white/70" : "text-surface-400 dark:text-white/30"
                 )}>{desc}</p>
 
                 <div className="flex items-baseline gap-1 mb-12">
-                  <span className="text-5xl font-black text-white tracking-tightest">${prices.monthly}</span>
+                  <span className={cn(
+                    "text-5xl font-black tracking-tightest",
+                    isCurrent ? "text-white" : "text-surface-950 dark:text-white"
+                  )}>${prices.monthly}</span>
                   <span className={cn(
                     "text-sm font-bold uppercase tracking-widest",
-                    isCurrent ? "text-white/60" : "text-white/20"
+                    isCurrent ? "text-white/60" : "text-surface-400 dark:text-white/20"
                   )}>/mo</span>
                 </div>
 
@@ -182,7 +262,7 @@ export default function BillingPage() {
                       </div>
                       <span className={cn(
                         "text-sm font-bold",
-                        isCurrent ? "text-white" : "text-white/60"
+                        isCurrent ? "text-white" : "text-surface-700 dark:text-white/60"
                       )}>{item.l}</span>
                     </li>
                   ))}
@@ -191,12 +271,22 @@ export default function BillingPage() {
                 {!isCurrent ? (
                   <button 
                     onClick={() => handlePlanAction(key)}
+                    disabled={processing}
                     className={cn(
-                      "w-full py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-3",
-                      isDowngrade ? "bg-white/10 border border-white/20 text-white hover:bg-white/20" : "bg-white text-surface-950 hover:bg-brand-600 hover:text-white"
+                      "w-full py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-3 cursor-pointer",
+                      isDowngrade 
+                        ? "bg-surface-100 dark:bg-white/10 border border-surface-200 dark:border-white/20 text-surface-700 dark:text-white hover:bg-surface-200 dark:hover:bg-white/20" 
+                        : "bg-surface-950 dark:bg-white text-white dark:text-surface-950 hover:bg-brand-600 dark:hover:bg-brand-600 hover:text-white dark:hover:text-white hover:shadow-brand transition-all border border-surface-200 dark:border-none",
+                      processing && "opacity-50 cursor-not-allowed"
                     )}
                   >
-                    {isDowngrade ? 'Downgrade Plan' : 'Upgrade Workspace'}
+                    {processing ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : isDowngrade ? (
+                      'Downgrade Plan'
+                    ) : (
+                      'Upgrade Workspace'
+                    )}
                   </button>
                 ) : (
                   <div className="w-full py-5 rounded-2xl bg-white/20 border border-white/20 text-white font-black text-xs uppercase tracking-widest text-center">
@@ -223,14 +313,14 @@ export default function BillingPage() {
               onClick={(e) => e.stopPropagation()}
               className="p-1 rounded-[3rem] bg-amber-500/10 border border-amber-500/20 shadow-2xl w-full max-w-lg cursor-default"
             >
-              <div className="bg-surface-900 rounded-[2.8rem] p-10 md:p-12">
+              <div className="bg-white dark:bg-surface-900 rounded-[2.8rem] p-10 md:p-12 shadow-2xl border border-surface-200 dark:border-none">
                 <div className="text-center mb-10">
                    <div className="w-16 h-16 rounded-3xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center mx-auto mb-6">
                       <AlertTriangle className="w-8 h-8 text-amber-500" />
                    </div>
-                   <h2 className="text-3xl font-black text-white mb-2">Are you sure?</h2>
-                   <p className="text-white/40 text-sm font-bold leading-relaxed">
-                      You are about to downgrade to the <span className="text-white">{showDowngradeModal.toUpperCase()}</span> plan. 
+                   <h2 className="text-3xl font-black text-surface-950 dark:text-white mb-2">Are you sure?</h2>
+                   <p className="text-surface-500 dark:text-white/40 text-sm font-bold leading-relaxed">
+                      You are about to downgrade to the <span className="text-surface-950 dark:text-white font-extrabold">{showDowngradeModal.toUpperCase()}</span> plan. 
                       You will lose access to premium features and your workspace limits will be reduced immediately.
                    </p>
                 </div>
@@ -239,14 +329,14 @@ export default function BillingPage() {
                    <button 
                      onClick={() => setShowDowngradeModal(null)}
                      disabled={processing}
-                     className="flex-1 py-5 rounded-2xl border-2 border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/5 transition-all"
+                     className="flex-1 py-5 rounded-2xl border-2 border-surface-200 dark:border-white/10 text-surface-650 dark:text-white font-black text-xs uppercase tracking-widest hover:bg-surface-50 dark:hover:bg-white/5 transition-all cursor-pointer"
                    >
                       Keep Current
                    </button>
                    <button 
                      onClick={confirmDowngrade}
                      disabled={processing}
-                     className="flex-1 bg-amber-500 text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-amber-600 transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-3"
+                     className="flex-1 bg-amber-500 text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-amber-600 transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-3 cursor-pointer"
                    >
                       {processing ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm Downgrade'}
                    </button>

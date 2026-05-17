@@ -27,15 +27,15 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">Analytics</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">Analytics</h1>
+          <p className="text-surface-500 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
             <Activity className="w-3.5 h-3.5" /> Real-time workspace intelligence
           </p>
         </div>
         <div className="flex gap-4">
-           <div className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3 shadow-xl">
+           <div className="px-4 py-2 rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 flex items-center gap-3 shadow-xl">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.6)]" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-white">Live Stream Active</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-surface-950 dark:text-white">Live Stream Active</span>
            </div>
         </div>
       </div>
@@ -48,10 +48,10 @@ export default function AnalyticsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             key={i} 
-            className="p-8 rounded-[2rem] bg-surface-900 border border-white/10 flex flex-col justify-between group hover:border-brand-600/50 transition-colors shadow-xl"
+            className="p-8 rounded-[2rem] bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 flex flex-col justify-between group hover:border-brand-600/50 transition-colors shadow-[0_8px_30px_rgba(0,0,0,0.02)] dark:shadow-xl"
           >
              <div className="flex justify-between items-start mb-6">
-               <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{kpi.label}</span>
+               <span className="text-[10px] font-black uppercase tracking-widest text-surface-500 dark:text-white/40">{kpi.label}</span>
                <div className={cn(
                  "flex items-center gap-1 text-[10px] font-black px-2 py-1 rounded-md",
                  kpi.label === 'P99 Latency' 
@@ -62,7 +62,7 @@ export default function AnalyticsPage() {
                  {kpi.trend}
                </div>
              </div>
-             <div className="text-4xl font-black text-white tracking-tight">{kpi.value}</div>
+             <div className="text-4xl font-black text-surface-950 dark:text-white tracking-tight">{kpi.value}</div>
           </motion.div>
         ))}
       </div>
@@ -72,19 +72,19 @@ export default function AnalyticsPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="p-1 rounded-[3rem] bg-white/5 border border-white/10 shadow-2xl"
+        className="p-1 rounded-[3rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl"
       >
-        <div className="bg-surface-900/60 rounded-[2.8rem] p-10 h-[500px] flex flex-col">
+        <div className="bg-white dark:bg-surface-900/60 rounded-[2.8rem] p-10 h-[500px] flex flex-col">
            <div className="flex justify-between items-end mb-12">
              <div>
-                <h3 className="text-2xl font-black text-white mb-2">Network Traffic</h3>
-                <p className="text-xs font-bold text-white/40 uppercase tracking-widest">Global API requests over 30 days</p>
+                <h3 className="text-2xl font-black text-surface-950 dark:text-white mb-2">Network Traffic</h3>
+                <p className="text-xs font-bold text-surface-500 dark:text-white/40 uppercase tracking-widest">Global API requests over 30 days</p>
              </div>
              <div className="flex gap-2">
                 {['24H', '7D', '30D', '1Y'].map((t, i) => (
                   <button key={i} className={cn(
                     "px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
-                    t === '30D' ? "bg-brand-600 text-white shadow-lg shadow-brand-600/20" : "text-white/40 hover:bg-white/5 hover:text-white"
+                    t === '30D' ? "bg-brand-600 text-white shadow-lg shadow-brand-600/20" : "text-surface-500 dark:text-white/40 hover:bg-surface-100 dark:hover:bg-white/5 hover:text-surface-950 dark:hover:text-white"
                   )}>
                     {t}
                   </button>
@@ -129,11 +129,11 @@ export default function AnalyticsPage() {
            initial={{ opacity: 0, x: -20 }}
            animate={{ opacity: 1, x: 0 }}
            transition={{ delay: 0.6 }}
-           className="lg:col-span-2 p-10 rounded-[2.5rem] bg-surface-900 border border-white/10 shadow-2xl flex flex-col"
+           className="lg:col-span-2 p-10 rounded-[2.5rem] bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] dark:shadow-2xl flex flex-col"
          >
             <div className="flex justify-between items-center mb-8">
-               <h3 className="text-xl font-black text-white">Top Workspaces</h3>
-               <button className="text-[10px] font-black text-brand-500 uppercase tracking-widest hover:text-brand-400">View All</button>
+               <h3 className="text-xl font-black text-surface-950 dark:text-white">Top Workspaces</h3>
+               <button className="text-[10px] font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest hover:text-brand-700 dark:hover:text-brand-400">View All</button>
             </div>
             
             <div className="flex-1 flex flex-col gap-4">
@@ -143,19 +143,19 @@ export default function AnalyticsPage() {
                  { n: 'Soylent Ltd', id: 'ws_1m9p', u: '420K', c: 'bg-green-500' },
                  { n: 'Initech', id: 'ws_5b7n', u: '310K', c: 'bg-orange-500' }
                ].map((ws, i) => (
-                 <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+                 <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-surface-50 dark:bg-white/5 border border-surface-100 dark:border-white/5 hover:border-surface-200 dark:hover:border-white/10 transition-colors">
                     <div className="flex items-center gap-4">
                        <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs shadow-lg", ws.c)}>
                          {ws.n.charAt(0)}
                        </div>
                        <div>
-                         <p className="text-sm font-black text-white mb-0.5">{ws.n}</p>
-                         <p className="text-[10px] font-mono text-white/40">{ws.id}</p>
+                         <p className="text-sm font-black text-surface-950 dark:text-white mb-0.5">{ws.n}</p>
+                         <p className="text-[10px] font-mono text-surface-500 dark:text-white/40">{ws.id}</p>
                        </div>
                     </div>
                     <div className="text-right">
-                       <p className="text-sm font-black text-white mb-0.5">{ws.u}</p>
-                       <p className="text-[9px] font-black uppercase tracking-widest text-brand-500">Reqs / mo</p>
+                       <p className="text-sm font-black text-surface-950 dark:text-white mb-0.5">{ws.u}</p>
+                       <p className="text-[9px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">Reqs / mo</p>
                     </div>
                  </div>
                ))}
@@ -167,9 +167,9 @@ export default function AnalyticsPage() {
            initial={{ opacity: 0, x: 20 }}
            animate={{ opacity: 1, x: 0 }}
            transition={{ delay: 0.8 }}
-           className="p-10 rounded-[2.5rem] bg-surface-900 border border-white/10 shadow-2xl flex flex-col"
+           className="p-10 rounded-[2.5rem] bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.02)] dark:shadow-2xl flex flex-col"
          >
-            <h3 className="text-xl font-black text-white mb-8">System Health</h3>
+            <h3 className="text-xl font-black text-surface-950 dark:text-white mb-8">System Health</h3>
             
             <div className="space-y-6 flex-1">
                {[
@@ -179,23 +179,23 @@ export default function AnalyticsPage() {
                  { l: 'API Gateway', s: 'Operational', i: Activity }
                ].map((sys, i) => (
                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
-                       <sys.i className="w-4 h-4 text-white/60" />
+                    <div className="w-10 h-10 rounded-xl bg-surface-50 dark:bg-white/5 flex items-center justify-center border border-surface-200 dark:border-white/10">
+                       <sys.i className="w-4 h-4 text-surface-500 dark:text-white/60" />
                     </div>
                     <div className="flex-1">
-                       <p className="text-sm font-black text-white mb-1">{sys.l}</p>
+                       <p className="text-sm font-black text-surface-950 dark:text-white mb-1">{sys.l}</p>
                        <div className="flex items-center gap-2">
                          <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                         <span className="text-[10px] font-black uppercase tracking-widest text-green-500">{sys.s}</span>
+                         <span className="text-[10px] font-black uppercase tracking-widest text-green-600 dark:text-green-500">{sys.s}</span>
                        </div>
                     </div>
                  </div>
                ))}
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3">
-               <Clock className="w-4 h-4 text-white/40" />
-               <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Last updated: Just now</span>
+            <div className="mt-8 pt-6 border-t border-surface-100 dark:border-white/10 flex items-center gap-3">
+               <Clock className="w-4 h-4 text-surface-400 dark:text-white/40" />
+               <span className="text-[10px] font-bold text-surface-500 dark:text-white/40 uppercase tracking-widest">Last updated: Just now</span>
             </div>
          </motion.div>
       </div>

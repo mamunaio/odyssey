@@ -163,76 +163,76 @@ export default function MembersPage() {
     <div className="max-w-6xl mx-auto space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">Members</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">Members</h1>
+          <p className="text-surface-500 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
             <User className="w-3.5 h-3.5" /> {members?.length ?? 0} workspace members
           </p>
         </div>
         <button 
           onClick={() => setShowInviteModal(true)} 
-          className="bg-white text-surface-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all shadow-2xl flex items-center gap-3"
+          className="bg-surface-950 dark:bg-white text-white dark:text-surface-950 px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 dark:hover:bg-brand-600 hover:text-white dark:hover:text-white transition-all shadow-xl flex items-center gap-3"
         >
           <UserPlus className="w-4 h-4" /> Invite New Member
         </button>
       </div>
 
       {/* Members Table Card */}
-      <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl overflow-visible">
-        <div className="bg-surface-900/40 rounded-[2.3rem] overflow-hidden">
+      <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl overflow-visible">
+        <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] overflow-hidden">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-white/5 border-b border-white/5">
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Member Info</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Access Role</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Status</th>
-                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Joined On</th>
+              <tr className="bg-surface-50 dark:bg-white/5 border-b border-surface-100 dark:border-white/5">
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40">Member Info</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40">Access Role</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40">Status</th>
+                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40">Joined On</th>
                 <th className="px-8 py-5" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-surface-100 dark:divide-white/5">
               {isLoading ? (
                 <tr>
                   <td colSpan={5} className="px-8 py-20 text-center">
-                    <div className="flex flex-col items-center gap-4 text-white/20 uppercase tracking-[0.3em] font-black text-xs">
+                    <div className="flex flex-col items-center gap-4 text-surface-400 dark:text-white/20 uppercase tracking-[0.3em] font-black text-xs">
                        <Clock className="w-8 h-8 animate-pulse" />
                        Loading workspace directory...
                     </div>
                   </td>
                 </tr>
               ) : members?.map((member: any) => (
-                <tr key={member._id} className={cn("hover:bg-white/[0.02] transition-colors group", !member.isActive && "opacity-60")}>
+                <tr key={member._id} className={cn("hover:bg-surface-50 dark:hover:bg-white/[0.02] transition-colors group", !member.isActive && "opacity-60")}>
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-violet-600 flex items-center justify-center text-xs font-black text-white shadow-lg">
                         {getInitials(member.name)}
                       </div>
                       <div>
-                        <p className="text-sm font-black text-white group-hover:text-brand-500 transition-colors">{member.name}</p>
-                        <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mt-1">{member.email}</p>
+                        <p className="text-sm font-black text-surface-950 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">{member.name}</p>
+                        <p className="text-[10px] font-bold text-surface-500 dark:text-white/30 uppercase tracking-widest mt-1">{member.email}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-8 py-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                       <Shield className="w-3 h-3 text-brand-500" />
-                       <span className="text-[10px] font-black text-white uppercase tracking-widest">{member.role}</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10">
+                       <Shield className="w-3 h-3 text-brand-600 dark:text-brand-500" />
+                       <span className="text-[10px] font-black text-surface-950 dark:text-white uppercase tracking-widest">{member.role}</span>
                     </div>
                   </td>
                   <td className="px-8 py-6">
                     {member.isActive ? (
-                      <div className="flex items-center gap-2 text-green-500">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-500">
                         <CheckCircle2 className="w-4 h-4" />
                         <span className="text-[10px] font-black uppercase tracking-widest">Active</span>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-2 text-white/20">
+                      <div className="flex items-center gap-2 text-surface-400 dark:text-white/20">
                         <XCircle className="w-4 h-4" />
                         <span className="text-[10px] font-black uppercase tracking-widest">Inactive</span>
                       </div>
                     )}
                   </td>
                   <td className="px-8 py-6">
-                    <span className="text-xs font-bold text-white/40">
+                    <span className="text-xs font-bold text-surface-500 dark:text-white/40">
                       {new Date(member.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </span>
                   </td>

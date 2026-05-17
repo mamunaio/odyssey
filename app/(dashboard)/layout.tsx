@@ -9,7 +9,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   if (!session) redirect('/login')
 
   return (
-    <div className="flex h-screen bg-surface-950 text-white overflow-hidden relative font-sans">
+    <div className="flex h-screen bg-white dark:bg-surface-950 text-surface-950 dark:text-white overflow-hidden relative font-sans transition-colors duration-300">
       <Sidebar user={session.user as unknown as { name?: string, email?: string, image?: string, role?: string, tenantId?: string }} />
       <div className="flex-1 flex flex-col overflow-hidden relative">
         <TopBar user={session.user as unknown as { name?: string, email?: string, image?: string, role?: string, tenantId?: string }} />

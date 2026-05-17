@@ -23,7 +23,7 @@ export async function PATCH(req: Request) {
 
     // Handle password change
     if (currentPassword && newPassword) {
-      const isMatch = await bcrypt.compare(currentPassword, user.password)
+      const isMatch = await bcrypt.compare(currentPassword, user.password || '')
       if (!isMatch) {
         return NextResponse.json({ success: false, error: 'Incorrect current password' }, { status: 400 })
       }

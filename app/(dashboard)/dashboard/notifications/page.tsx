@@ -99,8 +99,8 @@ export default function NotificationsPage() {
     <div className="max-w-5xl mx-auto space-y-10">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">Notification Center</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">Notification Center</h1>
+          <p className="text-surface-500 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
             <Bell className="w-3.5 h-3.5" /> Workspace Activity Log
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function NotificationsPage() {
            <button 
              onClick={handleMarkAllRead}
              disabled={notifications.length === 0}
-             className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed flex items-center gap-2"
+             className="px-6 py-3 rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-surface-600 dark:text-white/60 hover:text-surface-950 dark:hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed flex items-center gap-2"
            >
               <Volume2 className="w-3 h-3 text-brand-500" />
               Mark all as read
@@ -136,7 +136,7 @@ export default function NotificationsPage() {
                onClick={() => setFilter(item.id as any)}
                className={cn(
                  "w-full flex items-center justify-between px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all",
-                 filter === item.id ? "bg-white text-surface-950 shadow-xl shadow-white/5" : "text-white/40 hover:bg-white/5 hover:text-white"
+                 filter === item.id ? "bg-surface-950 dark:bg-white text-white dark:text-surface-950 shadow-xl" : "text-surface-500 dark:text-white/40 hover:bg-surface-100 dark:hover:bg-white/5 hover:text-surface-950 dark:hover:text-white"
                )}
              >
                <div className="flex items-center gap-3">
@@ -150,13 +150,13 @@ export default function NotificationsPage() {
         {/* Notifications List */}
         <div className="flex-1 space-y-4">
            <div className="relative mb-8">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-400 dark:text-white/20" />
               <input 
                 type="text" 
                 placeholder="Search logs..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm font-bold text-white focus:outline-none focus:border-brand-600 transition-all placeholder:text-white/10"
+                className="w-full bg-surface-50 dark:bg-white/5 border border-surface-200 dark:border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm font-bold text-surface-950 dark:text-white focus:outline-none focus:border-brand-600 transition-all placeholder:text-surface-400 dark:placeholder:text-white/10"
               />
            </div>
 
@@ -166,7 +166,7 @@ export default function NotificationsPage() {
                  <motion.div 
                     initial={{ opacity: 0 }} 
                     animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center py-20 text-white/20 uppercase tracking-[0.3em] font-black text-xs gap-4"
+                    className="flex flex-col items-center justify-center py-20 text-surface-400 dark:text-white/20 uppercase tracking-[0.3em] font-black text-xs gap-4"
                  >
                     <MousePointer2 className="w-10 h-10 animate-bounce" />
                     No notifications found
@@ -180,15 +180,15 @@ export default function NotificationsPage() {
                    key={notif.id}
                    className={cn(
                      "p-1 rounded-[2.5rem] transition-all group",
-                     !notif.read ? "bg-gradient-to-r from-brand-600/40 to-transparent shadow-[0_0_40px_-20px_rgba(139,92,246,0.3)]" : "bg-white/5 border border-white/10"
+                     !notif.read ? "bg-gradient-to-r from-brand-600/40 to-transparent shadow-[0_0_40px_-20px_rgba(139,92,246,0.3)]" : "bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10"
                    )}
                  >
-                   <div className="bg-surface-900/60 backdrop-blur-xl rounded-[2.3rem] p-8 flex items-start gap-6">
+                   <div className="bg-white dark:bg-surface-900/60 backdrop-blur-xl rounded-[2.3rem] p-8 flex items-start gap-6">
                      <div className={cn(
                        "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border shadow-lg",
-                       notif.type === 'success' ? "bg-green-500/10 border-green-500/20 text-green-500" :
-                       notif.type === 'warning' ? "bg-amber-500/10 border-amber-500/20 text-amber-500" :
-                       "bg-blue-500/10 border-blue-500/20 text-blue-500"
+                       notif.type === 'success' ? "bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-500" :
+                       notif.type === 'warning' ? "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-500" :
+                       "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-500"
                      )}>
                        {notif.type === 'success' ? <CheckCircle2 className="w-6 h-6" /> : 
                         notif.type === 'warning' ? <AlertCircle className="w-6 h-6" /> : 
@@ -198,25 +198,25 @@ export default function NotificationsPage() {
                      <div className="flex-1">
                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                           <div className="flex items-center gap-3">
-                            <h3 className="text-lg font-black text-white">{notif.title}</h3>
-                            <span className="px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[8px] font-black uppercase tracking-widest text-white/30">
+                            <h3 className="text-lg font-black text-surface-950 dark:text-white">{notif.title}</h3>
+                            <span className="px-2 py-0.5 rounded-lg bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 text-[8px] font-black uppercase tracking-widest text-surface-500 dark:text-white/30">
                               {notif.category}
                             </span>
                             {!notif.read && <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />}
                           </div>
-                          <div className="flex items-center gap-2 text-white/20">
+                          <div className="flex items-center gap-2 text-surface-400 dark:text-white/20">
                              <Calendar className="w-3.5 h-3.5" />
                              <span className="text-[10px] font-bold">{notif.time}</span>
                           </div>
                        </div>
-                       <p className="text-sm font-bold text-white/40 leading-relaxed max-w-2xl">
+                       <p className="text-sm font-bold text-surface-500 dark:text-white/40 leading-relaxed max-w-2xl">
                          {notif.desc}
                        </p>
                      </div>
 
                      <button 
                        onClick={() => handleDelete(notif.id)}
-                       className="opacity-0 group-hover:opacity-100 transition-opacity p-3 hover:bg-white/5 rounded-xl text-white/20 hover:text-red-500"
+                       className="opacity-0 group-hover:opacity-100 transition-opacity p-3 hover:bg-surface-100 dark:hover:bg-white/5 rounded-xl text-surface-400 dark:text-white/20 hover:text-red-500 dark:hover:text-red-500"
                      >
                         <Trash2 className="w-5 h-5" />
                      </button>

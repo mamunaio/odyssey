@@ -173,33 +173,33 @@ export default function SupportPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-12 pb-24 text-white">
+    <div className="max-w-6xl mx-auto space-y-12 pb-24 text-surface-950 dark:text-white">
       
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">Support Center</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
-            <LifeBuoy className="w-3.5 h-3.5 text-brand-500" /> Professional SLA assistance & developers core docs
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">Support & Help</h1>
+          <p className="text-surface-500 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+            <LifeBuoy className="w-3.5 h-3.5" /> 24/7 Enterprise Assistance
           </p>
         </div>
       </div>
 
       {/* Dynamic Search knowledge Base Input */}
-      <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-        <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between">
+      <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+        <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 flex flex-col md:flex-row items-center gap-6 justify-between">
           <div className="max-w-md space-y-2">
-            <h2 className="text-2xl font-black text-white leading-tight">Need immediate troubleshooting?</h2>
-            <p className="text-white/45 text-xs font-bold leading-relaxed">
+            <h2 className="text-2xl font-black text-surface-950 dark:text-white leading-tight">Need immediate troubleshooting?</h2>
+            <p className="text-surface-500 dark:text-white/45 text-xs font-bold leading-relaxed">
               Search FAQ guides to immediately resolve SSO, billing, role permissions, or session revocation issues.
             </p>
           </div>
           <div className="w-full md:max-w-md relative group">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/20 group-focus-within:text-brand-500 transition-colors" />
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-surface-400 dark:text-white/20 group-focus-within:text-brand-500 transition-colors" />
             <input 
               type="text"
               placeholder="Search SSO keys, invoice billings, invite roles..."
-              className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 pl-13 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-white/[0.07] shadow-inner placeholder:text-white/20"
+              className="w-full bg-surface-100 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 pl-13 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white focus:bg-white/50 dark:focus:bg-white/[0.07] shadow-inner placeholder:text-surface-400 dark:placeholder:text-white/20"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
             />
@@ -211,13 +211,13 @@ export default function SupportPage() {
       <div className="grid md:grid-cols-3 gap-8">
         
         {/* Submit Ticket Card */}
-        <div className="p-1 rounded-[2.2rem] bg-white/5 border border-white/10 shadow-2xl hover:border-brand-500/30 transition-all duration-300 relative overflow-hidden group">
-          <div className="bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
+        <div className="p-1 rounded-[2.2rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl hover:border-brand-500/30 transition-all duration-300 relative overflow-hidden group">
+          <div className="bg-white dark:bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
             <div className="w-12 h-12 rounded-2xl bg-brand-600/10 border border-brand-600/20 text-brand-500 flex items-center justify-center mb-6">
               <MessageSquare className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-black text-white mb-2 group-hover:text-brand-500 transition-colors">Submit Support Ticket</h3>
-            <p className="text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
+            <h3 className="text-lg font-black text-surface-950 dark:text-white mb-2 group-hover:text-brand-500 transition-colors">Submit Support Ticket</h3>
+            <p className="text-surface-500 dark:text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
               Direct connection with our technical engineering team. Typical response time is under 15 minutes.
             </p>
             <button 
@@ -230,7 +230,7 @@ export default function SupportPage() {
                   }, 100)
                 }
               }}
-              className="w-full py-4 rounded-xl bg-white text-surface-950 text-[10px] font-black uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 rounded-xl bg-surface-950 dark:bg-white text-white dark:text-surface-950 text-[10px] font-black uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all flex items-center justify-center gap-2"
             >
               {showTicketForm ? 'Close Ticket Form' : 'Open Ticket Form'} <ArrowRight className="w-3.5 h-3.5" />
             </button>
@@ -238,36 +238,36 @@ export default function SupportPage() {
         </div>
 
         {/* Book Call Card */}
-        <div className="p-1 rounded-[2.2rem] bg-white/5 border border-white/10 shadow-2xl hover:border-brand-500/30 transition-all duration-300 relative overflow-hidden group">
-          <div className="bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
+        <div className="p-1 rounded-[2.2rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl hover:border-indigo-500/30 transition-all duration-300 relative overflow-hidden group">
+          <div className="bg-white dark:bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
             <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6">
               <Calendar className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-black text-white mb-2 group-hover:text-indigo-400 transition-colors">Book Expert Session</h3>
-            <p className="text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
+            <h3 className="text-lg font-black text-surface-950 dark:text-white mb-2 group-hover:text-indigo-400 transition-colors">Book Expert Session</h3>
+            <p className="text-surface-500 dark:text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
               Schedule a 15-minute screen share with an engineer for high-touch enterprise deployment support.
             </p>
-            <div className="text-[10px] font-black text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3.5 py-2.5 rounded-xl uppercase tracking-wider text-center">
+            <div className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3.5 py-2.5 rounded-xl uppercase tracking-wider text-center">
               {bookedSlot ? `Booked: ${bookedSlot}` : '📅 3 slots available today'}
             </div>
           </div>
         </div>
 
         {/* Documentation Card */}
-        <div className="p-1 rounded-[2.2rem] bg-white/5 border border-white/10 shadow-2xl hover:border-brand-500/30 transition-all duration-300 relative overflow-hidden group">
-          <div className="bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
+        <div className="p-1 rounded-[2.2rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl hover:border-emerald-500/30 transition-all duration-300 relative overflow-hidden group">
+          <div className="bg-white dark:bg-surface-900/40 rounded-[2rem] p-8 flex flex-col h-full">
             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
               <BookOpen className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">Odyssey Knowledge Base</h3>
-            <p className="text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
+            <h3 className="text-lg font-black text-surface-950 dark:text-white mb-2 group-hover:text-emerald-400 transition-colors">Odyssey Knowledge Base</h3>
+            <p className="text-surface-500 dark:text-white/40 text-xs font-bold leading-relaxed mb-6 flex-1">
               Explore step-by-step guides for custom webhook triggers, Slack maps, SAML setups, and billing cycles.
             </p>
             <a 
               href="https://github.com" 
               target="_blank" 
               rel="noreferrer"
-              className="w-full py-4 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white transition-all text-center text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5"
+              className="w-full py-4 rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 text-surface-600 dark:text-white/70 hover:bg-surface-200 dark:hover:bg-white/10 hover:text-surface-950 dark:hover:text-white transition-all text-center text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5"
             >
               Explore API Guides <ExternalLink className="w-3.5 h-3.5" />
             </a>
@@ -281,13 +281,13 @@ export default function SupportPage() {
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden"
+          className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden"
         >
-          <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
-            <h3 className="text-sm font-black uppercase tracking-wider text-white flex items-center gap-2">
+          <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
+            <h3 className="text-sm font-black uppercase tracking-wider text-surface-950 dark:text-white flex items-center gap-2">
               <Calendar className="w-4 h-4 text-brand-500" /> Select Expert Consultation Slot
             </h3>
-            <div className="w-full h-px bg-white/5" />
+            <div className="w-full h-px bg-surface-200 dark:bg-white/5" />
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {callSlots.map((s) => (
                 <button
@@ -297,21 +297,21 @@ export default function SupportPage() {
                   className={cn(
                     "p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden flex flex-col justify-between min-h-[100px]",
                     s.available 
-                      ? "bg-white/[0.02] border-white/10 hover:border-indigo-500 hover:bg-indigo-500/[0.02] cursor-pointer group/slot" 
-                      : "bg-white/[0.01] border-white/5 text-white/20 cursor-not-allowed"
+                      ? "bg-surface-50 dark:bg-white/[0.02] border-surface-200 dark:border-white/10 hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-500/[0.02] cursor-pointer group/slot" 
+                      : "bg-surface-100 dark:bg-white/[0.01] border-surface-100 dark:border-white/5 text-surface-400 dark:text-white/20 cursor-not-allowed"
                   )}
                 >
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover/slot:text-indigo-400">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-surface-400 dark:text-white/30 group-hover/slot:text-indigo-400">
                     Slot {s.id.toUpperCase()}
                   </span>
-                  <div className="text-xs font-black text-white mt-2">
+                  <div className="text-xs font-black text-surface-950 dark:text-white mt-2">
                     {s.time}
                   </div>
                   <div className={cn(
                     "text-[8px] font-black uppercase tracking-widest mt-3 px-2 py-0.5 rounded border self-start",
                     s.available 
-                      ? "bg-green-500/10 border-green-500/20 text-green-500" 
-                      : "bg-white/5 border-white/5 text-white/20"
+                      ? "bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-500" 
+                      : "bg-surface-100 dark:bg-white/5 border-surface-200 dark:border-white/5 text-surface-400 dark:text-white/20"
                   )}>
                     {s.available ? 'Available' : 'Reserved'}
                   </div>
@@ -331,58 +331,56 @@ export default function SupportPage() {
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: 20 }}
             transition={{ duration: 0.35 }}
-            className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden"
+            className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden"
           >
-            <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
+            <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-black text-white flex items-center gap-2">
+                <h3 className="text-lg font-black text-surface-950 dark:text-white flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-brand-500" /> Submit Help Ticket to Odyssey Engineering
                 </h3>
-                <span className="text-[9px] font-black uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20 animate-pulse">
+                <span className="text-[9px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20 animate-pulse">
                   Direct Line
                 </span>
               </div>
-              <div className="w-full h-px bg-white/5" />
+              <div className="w-full h-px bg-surface-200 dark:bg-white/5" />
 
               <form onSubmit={handleTicketSubmit} className="space-y-6">
                 
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* Category Dropdown */}
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Category</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Category</label>
                     <select 
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-5 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-surface-950/80 cursor-pointer"
+                      className="w-full bg-surface-50 dark:bg-surface-950/80 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-5 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white cursor-pointer"
                       value={ticketCategory}
                       onChange={e => setTicketCategory(e.target.value)}
                     >
-                      <option className="bg-surface-950" value="Billing & Subscriptions">Billing & Subscriptions</option>
-                      <option className="bg-surface-950" value="SSO & SAML Security">SSO & SAML Security</option>
-                      <option className="bg-surface-950" value="Workspace Roles & invites">Workspace Roles & invites</option>
-                      <option className="bg-surface-950" value="API & Webhook Integrations">API & Webhook Integrations</option>
+                      <option className="bg-white dark:bg-surface-950 text-surface-950 dark:text-white" value="Workspace Roles & invites">Workspace Roles & invites</option>
+                      <option className="bg-white dark:bg-surface-950 text-surface-950 dark:text-white" value="API & Webhook Integrations">API & Webhook Integrations</option>
                     </select>
                   </div>
 
                   {/* Severity Tier */}
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Severity Level</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Severity Level</label>
                     <select 
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-5 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-surface-950/80 cursor-pointer"
+                      className="w-full bg-surface-50 dark:bg-surface-950/80 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-5 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white cursor-pointer"
                       value={ticketSeverity}
                       onChange={e => setTicketSeverity(e.target.value)}
                     >
-                      <option className="bg-surface-950 text-white" value="Standard Inquiry">Standard Inquiry</option>
-                      <option className="bg-surface-950 text-amber-500 font-bold" value="High Severity">High Severity</option>
-                      <option className="bg-surface-950 text-red-500 font-black animate-pulse" value="Critical Production Down">Critical Production Down</option>
+                      <option className="bg-white dark:bg-surface-950 text-surface-950 dark:text-white" value="Standard Inquiry">Standard Inquiry</option>
+                      <option className="bg-white dark:bg-surface-950 text-amber-600 dark:text-amber-500 font-bold" value="High Severity">High Severity</option>
+                      <option className="bg-white dark:bg-surface-950 text-red-600 dark:text-red-500 font-black animate-pulse" value="Critical Production Down">Critical Production Down</option>
                     </select>
                   </div>
 
                   {/* Subject Input */}
                   <div className="md:col-span-1">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Ticket Subject</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Ticket Subject</label>
                     <input 
                       type="text"
                       placeholder="e.g. Card charge declined on Pro"
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-white/[0.07] shadow-inner placeholder:text-white/20"
+                      className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white focus:bg-white/50 dark:focus:bg-white/[0.07] shadow-inner placeholder:text-surface-400 dark:placeholder:text-white/20"
                       value={ticketSubject}
                       onChange={e => setTicketSubject(e.target.value)}
                       required
@@ -392,11 +390,11 @@ export default function SupportPage() {
 
                 {/* Description Textarea */}
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Issue Details & System Environment</label>
+                  <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Issue Details & System Environment</label>
                   <textarea 
                     rows={4}
                     placeholder="Briefly explain the issue, error messages displayed, and browser platform if applicable..."
-                    className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-white/[0.07] shadow-inner placeholder:text-white/20 resize-none"
+                    className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white focus:bg-white/50 dark:focus:bg-white/[0.07] shadow-inner placeholder:text-surface-400 dark:placeholder:text-white/20 resize-none"
                     value={ticketDescription}
                     onChange={e => setTicketDescription(e.target.value)}
                     required
@@ -408,14 +406,14 @@ export default function SupportPage() {
                   <button 
                     type="button" 
                     onClick={() => setShowTicketForm(false)}
-                    className="px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-white/60 hover:bg-white/10 hover:text-white transition-all"
+                    className="px-6 py-4 rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-surface-600 dark:text-white/60 hover:bg-surface-200 dark:hover:bg-white/10 hover:text-surface-950 dark:hover:text-white transition-all"
                   >
                     Cancel
                   </button>
                   <button 
                     type="submit" 
                     disabled={ticketSubmitting}
-                    className="bg-white text-surface-950 px-10 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all flex items-center gap-2 active:scale-95 duration-200"
+                    className="bg-surface-950 dark:bg-white text-white dark:text-surface-950 px-10 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all flex items-center gap-2 active:scale-95 duration-200"
                   >
                     {ticketSubmitting ? (
                       <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Provisioning Ticket...</>
@@ -433,17 +431,17 @@ export default function SupportPage() {
       </AnimatePresence>
 
       {/* ================= DYNAMIC SEARCH KNOWLEDGE FAQ HUB ================= */}
-      <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-        <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
+      <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+        <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-black text-white flex items-center gap-2">
+            <h3 className="text-lg font-black text-surface-950 dark:text-white flex items-center gap-2">
               <LifeBuoy className="w-5 h-5 text-brand-500" /> Frequently Answered FAQ Guides
             </h3>
-            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+            <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
               {filteredFaqs.length} Guides Found
             </span>
           </div>
-          <div className="w-full h-px bg-white/5" />
+          <div className="w-full h-px bg-surface-200 dark:bg-white/5" />
 
           {/* Accordion Hub items */}
           <div className="space-y-4 pt-2">
@@ -460,7 +458,7 @@ export default function SupportPage() {
                         "rounded-2xl border transition-all duration-300 overflow-hidden",
                         isExpanded 
                           ? "bg-brand-600/5 border-brand-600/20 shadow-[0_0_15px_rgba(139,92,246,0.03)]" 
-                          : "bg-white/[0.01] border-white/5 hover:border-white/10"
+                          : "bg-surface-50 dark:bg-white/[0.01] border-surface-200 dark:border-white/5 hover:border-surface-300 dark:hover:border-white/10"
                       )}
                     >
                       {/* Accordion Header */}
@@ -469,12 +467,12 @@ export default function SupportPage() {
                         className="w-full p-5 text-left flex items-center justify-between gap-4 select-none focus:outline-none"
                       >
                         <div className="flex items-center gap-3">
-                          <span className="text-[8px] font-black uppercase tracking-widest text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20 shrink-0">
+                          <span className="text-[8px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20 shrink-0">
                             {faq.category}
                           </span>
-                          <h4 className="text-sm font-black text-white leading-relaxed">{faq.question}</h4>
+                          <h4 className="text-sm font-black text-surface-950 dark:text-white leading-relaxed">{faq.question}</h4>
                         </div>
-                        <div className="text-white/40">
+                        <div className="text-surface-500 dark:text-white/40">
                           {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                         </div>
                       </button>
@@ -488,7 +486,7 @@ export default function SupportPage() {
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.25 }}
                           >
-                            <div className="px-5 pb-5 pt-1 text-xs font-bold leading-relaxed text-white/50 border-t border-white/5">
+                            <div className="px-5 pb-5 pt-1 text-xs font-bold leading-relaxed text-surface-500 dark:text-white/50 border-t border-surface-200 dark:border-white/5">
                               {faq.answer}
                             </div>
                           </motion.div>
@@ -499,8 +497,8 @@ export default function SupportPage() {
                   )
                 })
               ) : (
-                <div className="py-12 text-center text-white/20 font-black uppercase tracking-widest text-xs flex flex-col items-center justify-center gap-2">
-                  <AlertCircle className="w-8 h-8 text-white/10 mb-2" />
+                <div className="py-12 text-center text-surface-400 dark:text-white/20 font-black uppercase tracking-widest text-xs flex flex-col items-center justify-center gap-2">
+                  <AlertCircle className="w-8 h-8 text-surface-300 dark:text-white/10 mb-2" />
                   No FAQ guides matching your query
                 </div>
               )}
@@ -511,17 +509,17 @@ export default function SupportPage() {
       </div>
 
       {/* ================= PERSONAL HELP TICKETS LOGS STREAM ================= */}
-      <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-        <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
+      <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+        <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-black text-white flex items-center gap-2">
+            <h3 className="text-lg font-black text-surface-950 dark:text-white flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-brand-500" /> Personal Support Ticket Audit Log
             </h3>
-            <span className="text-[10px] font-black uppercase tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20 animate-pulse">
+            <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500 bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20 animate-pulse">
               Sync Active
             </span>
           </div>
-          <div className="w-full h-px bg-white/5" />
+          <div className="w-full h-px bg-surface-200 dark:bg-white/5" />
 
           {/* Ticket stream items */}
           <div className="space-y-4 pt-2">
@@ -537,33 +535,33 @@ export default function SupportPage() {
                     "p-5 rounded-2xl border transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden",
                     t.status === 'Pending Response'
                       ? "bg-amber-500/5 border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.04)] animate-pulse"
-                      : "bg-white/[0.01] border-white/5 hover:border-white/10"
+                      : "bg-surface-50 dark:bg-white/[0.01] border-surface-200 dark:border-white/5 hover:border-surface-300 dark:hover:border-white/10"
                   )}
                 >
                   <div className="flex items-start gap-4">
                     <div className={cn(
-                      "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border text-[10px] font-black text-white/50",
+                      "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border text-[10px] font-black",
                       t.status === 'Pending Response'
-                        ? "bg-amber-500/10 border-amber-500/20"
+                        ? "bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-500"
                         : t.status === 'Under Review'
-                          ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400"
-                          : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                          ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400"
+                          : "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
                     )}>
-                      {t.status === 'Resolved' ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : <MessageSquare className="w-5 h-5" />}
+                      {t.status === 'Resolved' ? <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> : <MessageSquare className="w-5 h-5" />}
                     </div>
                     <div>
                       <div className="flex items-center gap-2.5">
-                        <span className="text-[10px] font-black text-white/30 uppercase tracking-widest">{t.id}</span>
-                        <span className="text-white/20">•</span>
-                        <span className="text-[9px] font-black text-white/40 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                        <span className="text-[10px] font-black text-surface-400 dark:text-white/30 uppercase tracking-widest">{t.id}</span>
+                        <span className="text-surface-300 dark:text-white/20">•</span>
+                        <span className="text-[9px] font-black text-surface-500 dark:text-white/40 uppercase tracking-widest bg-surface-100 dark:bg-white/5 px-2 py-0.5 rounded border border-surface-200 dark:border-white/10">
                           {t.category}
                         </span>
                       </div>
-                      <h4 className="text-sm font-black text-white mt-1.5">{t.subject}</h4>
+                      <h4 className="text-sm font-black text-surface-950 dark:text-white mt-1.5">{t.subject}</h4>
                       
-                      <div className="flex items-center gap-3 mt-2 text-[10px] font-bold text-white/30">
+                      <div className="flex items-center gap-3 mt-2 text-[10px] font-bold text-surface-500 dark:text-white/30">
                         <span className={cn(
-                          t.severity === 'Critical Production Down' ? 'text-red-500' : t.severity === 'High Severity' ? 'text-amber-500' : 'text-white/30'
+                          t.severity === 'Critical Production Down' ? 'text-red-600 dark:text-red-500' : t.severity === 'High Severity' ? 'text-amber-600 dark:text-amber-500' : 'text-surface-400 dark:text-white/30'
                         )}>
                           Severity: {t.severity}
                         </span>

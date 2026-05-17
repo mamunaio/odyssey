@@ -31,10 +31,12 @@ export default function ProfilePage() {
   // Synchronize session values once they load
   useEffect(() => {
     if (session?.user) {
+      const name = session.user.name || ''
+      const email = session.user.email || ''
       setFormData(prev => ({
         ...prev,
-        name: session.user.name || '',
-        email: session.user.email || '',
+        name,
+        email,
       }))
     }
   }, [session])
@@ -239,13 +241,13 @@ export default function ProfilePage() {
     }
   }
 
-  return (
-    <div className="max-w-6xl mx-auto space-y-12 pb-24 text-white">
+return (
+    <div className="max-w-6xl mx-auto space-y-12 pb-24 text-surface-950 dark:text-white">
       {/* Top Title Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tightest text-white mb-2">My Profile</h1>
-          <p className="text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+          <h1 className="text-4xl font-black tracking-tightest text-surface-950 dark:text-white mb-2">My Profile</h1>
+          <p className="text-surface-500 dark:text-white/40 text-xs font-black uppercase tracking-widest flex items-center gap-2">
             <User className="w-3.5 h-3.5 text-brand-500" /> Configure your identity & protection shield
           </p>
         </div>
@@ -257,8 +259,8 @@ export default function ProfilePage() {
         <div className="space-y-8 lg:col-span-1">
           
           {/* Futuristic Avatar Customizer Card */}
-          <div className="p-1 rounded-[3rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden group">
-            <div className="bg-surface-900/40 rounded-[2.8rem] p-8 flex flex-col items-center">
+          <div className="p-1 rounded-[3rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden group">
+            <div className="bg-white dark:bg-surface-900/40 rounded-[2.8rem] p-8 flex flex-col items-center">
               
               {/* Uploader Drag-and-Drop Area */}
               <div 
@@ -314,8 +316,8 @@ export default function ProfilePage() {
                 className="hidden" 
               />
 
-              <h2 className="text-2xl font-black text-white truncate max-w-full">{formData.name || 'Odyssey Admin'}</h2>
-              <p className="text-[10px] font-black text-white/30 uppercase tracking-widest mb-6 mt-1 truncate max-w-full">{formData.email}</p>
+              <h2 className="text-2xl font-black text-surface-950 dark:text-white truncate max-w-full">{formData.name || 'Odyssey Admin'}</h2>
+              <p className="text-[10px] font-black text-surface-400 dark:text-white/30 uppercase tracking-widest mb-6 mt-1 truncate max-w-full">{formData.email}</p>
               
               <div className="flex gap-2">
                 <div className="px-4 py-2 rounded-xl bg-brand-600/10 border border-brand-600/20 text-[10px] font-black uppercase tracking-widest text-brand-500 flex items-center gap-2">
@@ -333,8 +335,8 @@ export default function ProfilePage() {
               </div>
 
               {/* Preset Gradient Background Themes Grid */}
-              <div className="w-full border-t border-white/5 mt-8 pt-6">
-                <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-white/30 mb-4 text-center">Gradient Theme Presets</h4>
+              <div className="w-full border-t border-surface-200 dark:border-white/5 mt-8 pt-6">
+                <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-surface-400 dark:text-white/30 mb-4 text-center">Gradient Theme Presets</h4>
                 <div className="grid grid-cols-4 gap-3">
                   {GRADIENT_PRESETS.map((p) => (
                     <button
@@ -361,24 +363,24 @@ export default function ProfilePage() {
           </div>
 
           {/* Connected Identity Accounts Module */}
-          <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-            <div className="bg-surface-900/40 rounded-[2.3rem] p-8 space-y-6">
+          <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+            <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 space-y-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-black uppercase tracking-wider text-white">SSO Integrations</h3>
+                <h3 className="text-sm font-black uppercase tracking-wider text-surface-950 dark:text-white">SSO Integrations</h3>
                 <Zap className="w-4 h-4 text-brand-500" />
               </div>
-              <p className="text-white/40 text-[10px] font-bold leading-relaxed">
+              <p className="text-surface-500 dark:text-white/40 text-[10px] font-bold leading-relaxed">
                 Connect external accounts for secure Single Sign-On authentications.
               </p>
 
               <div className="space-y-3.5 pt-2">
                 {/* Google Provider Row */}
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-white/[0.02] border border-surface-200 dark:border-white/5">
                   <div className="flex items-center gap-3">
                     <Globe className="w-5 h-5 text-blue-400 shrink-0" />
                     <div>
-                      <p className="text-xs font-black text-white">Google SSO</p>
-                      <p className="text-[9px] font-bold text-white/30 truncate max-w-[140px]">{connectedProviders.google ? formData.email : 'Not connected'}</p>
+                      <p className="text-xs font-black text-surface-950 dark:text-white">Google SSO</p>
+                      <p className="text-[9px] font-bold text-surface-400 dark:text-white/30 truncate max-w-[140px]">{connectedProviders.google ? formData.email : 'Not connected'}</p>
                     </div>
                   </div>
                   <button 
@@ -386,7 +388,7 @@ export default function ProfilePage() {
                     disabled={linkingProvider !== null}
                     className={cn(
                       "px-3.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all",
-                      connectedProviders.google ? "bg-white/5 text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-white/10" : "bg-blue-500 text-white hover:bg-blue-600"
+                      connectedProviders.google ? "bg-surface-100 dark:bg-white/5 text-surface-600 dark:text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-surface-200 dark:border-white/10" : "bg-blue-500 text-white hover:bg-blue-600"
                     )}
                   >
                     {connectedProviders.google ? 'Disconnect' : 'Connect'}
@@ -394,14 +396,14 @@ export default function ProfilePage() {
                 </div>
 
                 {/* GitHub Provider Row */}
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-white/[0.02] border border-surface-200 dark:border-white/5">
                   <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-white fill-current shrink-0" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-surface-950 dark:text-white fill-current shrink-0" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                     <div>
-                      <p className="text-xs font-black text-white">GitHub OAuth</p>
-                      <p className="text-[9px] font-bold text-white/30 truncate max-w-[140px]">{connectedProviders.github ? '@github_odyssey' : 'Not connected'}</p>
+                      <p className="text-xs font-black text-surface-950 dark:text-white">GitHub OAuth</p>
+                      <p className="text-[9px] font-bold text-surface-400 dark:text-white/30 truncate max-w-[140px]">{connectedProviders.github ? '@github_odyssey' : 'Not connected'}</p>
                     </div>
                   </div>
                   <button 
@@ -409,7 +411,7 @@ export default function ProfilePage() {
                     disabled={linkingProvider !== null}
                     className={cn(
                       "px-3.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5",
-                      connectedProviders.github ? "bg-white/5 text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-white/10" : "bg-white text-surface-950 hover:bg-brand-600 hover:text-white"
+                      connectedProviders.github ? "bg-surface-100 dark:bg-white/5 text-surface-600 dark:text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-surface-200 dark:border-white/10" : "bg-surface-950 dark:bg-white text-white dark:text-surface-950 hover:bg-brand-600 hover:text-white"
                     )}
                   >
                     {linkingProvider === 'github' ? (
@@ -421,12 +423,12 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Discord Provider Row */}
-                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/[0.02] border border-white/5">
+                <div className="flex items-center justify-between p-3.5 rounded-2xl bg-surface-50 dark:bg-white/[0.02] border border-surface-200 dark:border-white/5">
                   <div className="flex items-center gap-3">
                     <Zap className="w-5 h-5 text-indigo-400 shrink-0" />
                     <div>
-                      <p className="text-xs font-black text-white">Discord Guild</p>
-                      <p className="text-[9px] font-bold text-white/30 truncate max-w-[140px]">{connectedProviders.discord ? '@discord_admin' : 'Not connected'}</p>
+                      <p className="text-xs font-black text-surface-950 dark:text-white">Discord Guild</p>
+                      <p className="text-[9px] font-bold text-surface-400 dark:text-white/30 truncate max-w-[140px]">{connectedProviders.discord ? '@discord_admin' : 'Not connected'}</p>
                     </div>
                   </div>
                   <button 
@@ -434,7 +436,7 @@ export default function ProfilePage() {
                     disabled={linkingProvider !== null}
                     className={cn(
                       "px-3.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1.5",
-                      connectedProviders.discord ? "bg-white/5 text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-white/10" : "bg-indigo-500 text-white hover:bg-indigo-600"
+                      connectedProviders.discord ? "bg-surface-100 dark:bg-white/5 text-surface-600 dark:text-white/55 hover:bg-red-500/10 hover:text-red-500 border border-surface-200 dark:border-white/10" : "bg-indigo-500 text-white hover:bg-indigo-600"
                     )}
                   >
                     {linkingProvider === 'discord' ? (
@@ -456,22 +458,22 @@ export default function ProfilePage() {
           <form onSubmit={handleUpdate} className="space-y-8">
             
             {/* Personal Details Form Section */}
-            <div className="p-1 rounded-[2.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-              <div className="bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
-                <h3 className="text-lg font-black text-white flex items-center gap-2">
+            <div className="p-1 rounded-[2.5rem] bg-surface-200/80 dark:bg-white/5 border border-surface-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+              <div className="bg-white dark:bg-surface-900/40 rounded-[2.3rem] p-8 md:p-10 space-y-6">
+                <h3 className="text-lg font-black text-surface-950 dark:text-white flex items-center gap-2">
                   <User className="w-5 h-5 text-brand-500" /> Personal Identity Details
                 </h3>
-                <div className="w-full h-px bg-white/5" />
+                <div className="w-full h-px bg-surface-200 dark:bg-white/5" />
 
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Full Name Input */}
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Full Name</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Full Name</label>
                     <div className="relative group/input">
-                      <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/20 group-focus-within/input:text-brand-500 transition-colors" />
+                      <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-surface-300 dark:text-white/20 group-focus-within/input:text-brand-500 transition-colors" />
                       <input 
                         type="text" 
-                        className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 pl-14 focus:border-brand-600 focus:outline-none transition-all font-bold text-white focus:bg-white/[0.07] shadow-inner"
+                        className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 pl-14 focus:border-brand-600 focus:outline-none transition-all font-bold text-surface-950 dark:text-white focus:bg-white/[0.07] shadow-inner"
                         value={formData.name}
                         onChange={e => setFormData({ ...formData, name: e.target.value })}
                         required 
@@ -481,13 +483,13 @@ export default function ProfilePage() {
 
                   {/* Email Input (Read-only) */}
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Email Address</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Email Address</label>
                     <div className="relative">
-                      <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/20" />
+                      <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-surface-300 dark:text-white/20" />
                       <input 
                         type="email" 
                         disabled
-                        className="w-full bg-white/[0.02] border-2 border-white/5 rounded-2xl px-6 py-4 pl-14 text-white/30 cursor-not-allowed font-bold"
+                        className="w-full bg-surface-50 dark:bg-white/[0.02] border-2 border-surface-200 dark:border-white/5 rounded-2xl px-6 py-4 pl-14 text-surface-400 dark:text-white/30 cursor-not-allowed font-bold"
                         value={formData.email}
                       />
                       <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[9px] font-black uppercase tracking-widest text-brand-500/50 bg-brand-500/5 px-2 py-0.5 rounded border border-brand-500/10">

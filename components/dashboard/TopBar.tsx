@@ -86,16 +86,16 @@ export default function TopBar({ user }: TopBarProps) {
   }
 
   return (
-    <header className="h-20 bg-surface-950/40 backdrop-blur-3xl border-b border-white/5 flex items-center justify-between px-10 shrink-0 z-30 sticky top-0">
+    <header className="h-20 bg-white/40 dark:bg-surface-950/40 backdrop-blur-3xl border-b border-surface-200/50 dark:border-white/5 flex items-center justify-between px-10 shrink-0 z-30 sticky top-0 transition-colors duration-300">
       <div className="flex items-center gap-4 flex-1">
         <div className="relative max-w-lg w-full group">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-white/20 group-focus-within:text-brand-500 transition-colors" />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-surface-400 dark:text-white/20 group-focus-within:text-brand-500 transition-colors" />
           <input 
             type="text" 
             placeholder="Search resources, members or settings..." 
-            className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-3 pl-14 pr-14 text-sm font-bold text-white focus:outline-none focus:border-brand-600 focus:bg-white/[0.05] transition-all placeholder:text-white/20 shadow-inner"
+            className="w-full bg-surface-100 dark:bg-white/[0.03] border border-surface-200 dark:border-white/5 rounded-2xl py-3 pl-14 pr-14 text-sm font-bold text-surface-950 dark:text-white focus:outline-none focus:border-brand-600 focus:bg-white dark:focus:bg-white/[0.05] transition-all placeholder:text-surface-400 dark:placeholder:text-white/20 shadow-inner"
           />
-          <div className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] font-black text-white/30 uppercase tracking-tighter">
+          <div className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-2 py-1 rounded-lg bg-surface-200 dark:bg-white/5 border border-surface-300 dark:border-white/10 text-[10px] font-black text-surface-400 dark:text-white/30 uppercase tracking-tighter">
             <Command className="w-3 h-3" /> K
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function TopBar({ user }: TopBarProps) {
       <div className="flex items-center gap-6">
         <DropdownMenu.Root onOpenChange={(open) => open && markAsRead()}>
           <DropdownMenu.Trigger asChild>
-            <button className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white/60 hover:text-white transition-all outline-none">
+            <button className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 hover:bg-surface-200 dark:hover:bg-white/10 text-surface-600 dark:text-white/60 hover:text-surface-950 dark:hover:text-white transition-all outline-none cursor-pointer">
               <motion.div animate={bellShake ? { rotate: [0, 15, -15, 15, -15, 0] } : {}}>
                 <Bell className="w-5 h-5" />
               </motion.div>
@@ -115,9 +115,9 @@ export default function TopBar({ user }: TopBarProps) {
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Portal>
-            <DropdownMenu.Content className="w-80 bg-surface-900 border border-white/10 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in duration-200 mt-2" align="end">
-              <div className="px-4 py-3 border-b border-white/5 mb-2 flex items-center justify-between">
-                <p className="text-xs font-black uppercase tracking-widest text-white">Notifications</p>
+            <DropdownMenu.Content className="w-80 bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in duration-200 mt-2" align="end">
+              <div className="px-4 py-3 border-b border-surface-100 dark:border-white/5 mb-2 flex items-center justify-between">
+                <p className="text-xs font-black uppercase tracking-widest text-surface-950 dark:text-white">Notifications</p>
                 <span className="text-[10px] font-black uppercase tracking-widest text-brand-500 bg-brand-500/10 px-2 py-0.5 rounded-full">
                   {unreadCount} New
                 </span>
@@ -125,7 +125,7 @@ export default function TopBar({ user }: TopBarProps) {
               
               <div className="max-h-80 overflow-y-auto space-y-1 pr-1">
                 {notifications.map(notif => (
-                  <DropdownMenu.Item key={notif.id} className="flex gap-4 p-3 rounded-xl hover:bg-white/5 cursor-pointer outline-none transition-all group">
+                  <DropdownMenu.Item key={notif.id} className="flex gap-4 p-3 rounded-xl hover:bg-surface-100 dark:hover:bg-white/5 cursor-pointer outline-none transition-all group">
                     <div className={cn(
                       "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border",
                       notif.type === 'success' ? "bg-green-500/10 border-green-500/20 text-green-500" :
@@ -138,18 +138,18 @@ export default function TopBar({ user }: TopBarProps) {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-xs font-black text-white truncate">{notif.title}</p>
-                        <span className="text-[9px] font-bold text-white/20 whitespace-nowrap">{notif.time}</span>
+                        <p className="text-xs font-black text-surface-950 dark:text-white truncate">{notif.title}</p>
+                        <span className="text-[9px] font-bold text-surface-400 dark:text-white/20 whitespace-nowrap">{notif.time}</span>
                       </div>
-                      <p className="text-[10px] font-bold text-white/40 mt-0.5 leading-relaxed truncate">{notif.desc}</p>
+                      <p className="text-[10px] font-bold text-surface-500 dark:text-white/40 mt-0.5 leading-relaxed truncate">{notif.desc}</p>
                     </div>
                   </DropdownMenu.Item>
                 ))}
               </div>
 
-              <DropdownMenu.Separator className="my-2 border-t border-white/5" />
+              <DropdownMenu.Separator className="my-2 border-t border-surface-100 dark:border-white/5" />
               <Link href="/dashboard/notifications" className="block w-full">
-                <button className="w-full py-2.5 text-[10px] font-black uppercase tracking-widest text-brand-500 hover:text-white transition-colors">
+                <button className="w-full py-2.5 text-[10px] font-black uppercase tracking-widest text-brand-500 hover:text-brand-600 transition-colors cursor-pointer">
                   View all notifications
                 </button>
               </Link>
@@ -157,39 +157,39 @@ export default function TopBar({ user }: TopBarProps) {
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
 
-        <div className="w-px h-6 bg-white/10" />
+        <div className="w-px h-6 bg-surface-200 dark:bg-white/10" />
 
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
-            <button className="flex items-center gap-4 pl-1 pr-1 py-1 rounded-2xl hover:bg-white/5 transition-all outline-none group">
+            <button className="flex items-center gap-4 pl-1 pr-1 py-1 rounded-2xl hover:bg-surface-100 dark:hover:bg-white/5 transition-all outline-none group cursor-pointer">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-violet-600 flex items-center justify-center text-xs font-black text-white shadow-lg">
                 {user.name?.[0]?.toUpperCase() ?? 'O'}
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-black text-white leading-none">{user.name}</p>
-                <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mt-1 leading-none">Pro Plan</p>
+                <p className="text-sm font-black text-surface-950 dark:text-white leading-none">{user.name}</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-surface-400 dark:text-white/40 mt-1 leading-none">Pro Plan</p>
               </div>
-              <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white transition-colors" />
+              <ChevronDown className="w-4 h-4 text-surface-400 dark:text-white/40 group-hover:text-surface-900 dark:group-hover:text-white transition-colors" />
             </button>
           </DropdownMenu.Trigger>
 
           <DropdownMenu.Portal>
-            <DropdownMenu.Content className="w-64 bg-surface-900 border border-white/10 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in duration-200 mt-2" align="end">
-              <div className="px-4 py-4 border-b border-white/5 mb-2 bg-white/5 rounded-xl">
-                <p className="text-sm font-black text-white">{user.name}</p>
-                <p className="text-[10px] font-bold text-white/40 mt-1 truncate uppercase tracking-widest">{user.email}</p>
+            <DropdownMenu.Content className="w-64 bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in duration-200 mt-2" align="end">
+              <div className="px-4 py-4 border-b border-surface-100 dark:border-white/5 mb-2 bg-surface-50 dark:bg-white/5 rounded-xl">
+                <p className="text-sm font-black text-surface-950 dark:text-white">{user.name}</p>
+                <p className="text-[10px] font-bold text-surface-400 dark:text-white/40 mt-1 truncate uppercase tracking-widest">{user.email}</p>
               </div>
               
               <Link href="/dashboard/profile">
-                <DropdownMenu.Item className="flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-wider text-white/60 hover:bg-white/5 hover:text-white rounded-xl cursor-pointer outline-none transition-all">
+                <DropdownMenu.Item className="flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-wider text-surface-600 dark:text-white/60 hover:bg-surface-100 dark:hover:bg-white/5 hover:text-surface-950 dark:hover:text-white rounded-xl cursor-pointer outline-none transition-all">
                   <User className="w-4 h-4 text-brand-500" /> Account Settings
                 </DropdownMenu.Item>
               </Link>
-              <DropdownMenu.Item className="flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-wider text-white/60 hover:bg-white/5 hover:text-white rounded-xl cursor-pointer outline-none transition-all">
+              <DropdownMenu.Item className="flex items-center gap-3 px-3 py-3 text-xs font-black uppercase tracking-wider text-surface-600 dark:text-white/60 hover:bg-surface-100 dark:hover:bg-white/5 hover:text-surface-950 dark:hover:text-white rounded-xl cursor-pointer outline-none transition-all">
                 <Settings className="w-4 h-4 text-brand-500" /> Workspace Config
               </DropdownMenu.Item>
               
-              <DropdownMenu.Separator className="my-2 border-t border-white/5" />
+              <DropdownMenu.Separator className="my-2 border-t border-surface-100 dark:border-white/5" />
               
               <DropdownMenu.Item
                 onClick={() => signOut({ callbackUrl: '/login' })}

@@ -19,16 +19,40 @@ export const metadata: Metadata = {
 
 import AuthProvider from '@/components/providers/SessionProvider'
 import SoundNotificationProvider from '@/components/providers/SoundNotificationProvider'
+import ThemeProvider from '@/components/providers/ThemeProvider'
+import GlobalThemeSwitcher from '@/components/dashboard/GlobalThemeSwitcher'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={bricolage.variable}>
-      <body className="font-sans antialiased bg-white dark:bg-surface-950 text-surface-950 dark:text-white">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
-        <Toaster position="top-right" />
-        <SoundNotificationProvider />
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} scroll-smooth`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('theme') || 'system';
+                const root = document.documentElement;
+                root.classList.remove('light', 'dark');
+                if (savedTheme === 'system') {
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  root.classList.add(systemTheme);
+                } else {
+                  root.classList.add(savedTheme);
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased bg-white dark:bg-surface-950 text-surface-950 dark:text-white transition-colors duration-300">
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+          <Toaster position="top-right" />
+          <SoundNotificationProvider />
+          <GlobalThemeSwitcher />
+        </ThemeProvider>
       </body>
     </html>
   )
