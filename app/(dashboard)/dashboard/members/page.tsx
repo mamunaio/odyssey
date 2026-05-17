@@ -239,37 +239,37 @@ export default function MembersPage() {
                   <td className="px-8 py-6 text-right relative">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
-                        <button className="w-10 h-10 rounded-xl hover:bg-white/5 flex items-center justify-center text-white/20 hover:text-white transition-all outline-none">
+                        <button className="w-10 h-10 rounded-xl hover:bg-surface-200 dark:hover:bg-white/5 flex items-center justify-center text-surface-400 dark:text-white/20 hover:text-surface-950 dark:hover:text-white transition-all outline-none">
                           <MoreHorizontal className="w-5 h-5" />
                         </button>
                       </DropdownMenu.Trigger>
 
                       <DropdownMenu.Portal>
                         <DropdownMenu.Content 
-                          className="z-[100] min-w-[200px] bg-surface-900 border border-white/10 p-2 rounded-2xl shadow-2xl animate-in fade-in zoom-in duration-200"
+                          className="z-[100] min-w-[200px] bg-white dark:bg-surface-900 border border-surface-200 dark:border-white/10 p-2 rounded-2xl shadow-2xl animate-in fade-in zoom-in duration-200"
                           sideOffset={5}
                           align="end"
                         >
                           <DropdownMenu.Item 
-                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-white/60 hover:text-white hover:bg-white/5 rounded-xl outline-none cursor-pointer transition-all"
+                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-surface-600 dark:text-white/60 hover:text-surface-950 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/5 rounded-xl outline-none cursor-pointer transition-all"
                             onClick={() => setEditingMember({ ...member })}
                           >
-                            <Edit3 className="w-4 h-4 text-brand-500" />
+                            <Edit3 className="w-4 h-4 text-brand-600 dark:text-brand-500" />
                             Edit Permissions
                           </DropdownMenu.Item>
                           <DropdownMenu.Item 
-                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-white/60 hover:text-white hover:bg-white/5 rounded-xl outline-none cursor-pointer transition-all"
+                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-surface-600 dark:text-white/60 hover:text-surface-950 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-white/5 rounded-xl outline-none cursor-pointer transition-all"
                             onClick={() => handleToggleStatus(member._id, member.isActive)}
                           >
                             {member.isActive ? (
-                                <><UserMinus className="w-4 h-4 text-amber-500" /> Deactivate User</>
+                                <><UserMinus className="w-4 h-4 text-amber-600 dark:text-amber-500" /> Deactivate User</>
                             ) : (
-                                <><UserCheck className="w-4 h-4 text-green-500" /> Activate User</>
+                                <><UserCheck className="w-4 h-4 text-green-600 dark:text-green-500" /> Activate User</>
                             )}
                           </DropdownMenu.Item>
-                          <DropdownMenu.Separator className="h-px bg-white/5 my-2" />
+                          <DropdownMenu.Separator className="h-px bg-surface-200 dark:bg-white/5 my-2" />
                           <DropdownMenu.Item 
-                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-red-500 hover:bg-red-500/10 rounded-xl outline-none cursor-pointer transition-all"
+                            className="flex items-center gap-3 px-4 py-3 text-xs font-black uppercase tracking-widest text-red-600 dark:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl outline-none cursor-pointer transition-all"
                             onClick={() => handleRemoveMember(member._id)}
                           >
                             <Trash2 className="w-4 h-4" />
@@ -298,23 +298,23 @@ export default function MembersPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="p-1 rounded-[3rem] bg-white/10 border border-white/20 shadow-2xl w-full max-w-lg cursor-default"
+              className="p-1 rounded-[3rem] bg-surface-100 dark:bg-white/10 border border-surface-200 dark:border-white/20 shadow-2xl w-full max-w-lg cursor-default"
             >
-              <div className="bg-surface-900 rounded-[2.8rem] p-10 md:p-12">
+              <div className="bg-white dark:bg-surface-900 rounded-[2.8rem] p-10 md:p-12">
                 <div className="mb-10 text-center">
                    <div className="w-16 h-16 rounded-3xl bg-brand-600 flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-brand-600/40">
                       <UserPlus className="w-8 h-8 text-white" />
                    </div>
-                   <h2 className="text-3xl font-black text-white mb-2">Invite Collaborator</h2>
-                   <p className="text-white/40 font-medium text-sm">Send a workspace invitation to your team.</p>
+                   <h2 className="text-3xl font-black text-surface-950 dark:text-white mb-2">Invite Collaborator</h2>
+                   <p className="text-surface-500 dark:text-white/40 font-medium text-sm">Send a workspace invitation to your team.</p>
                 </div>
 
                 <form onSubmit={handleInvite} className="space-y-8">
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Email address</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Email address</label>
                     <input 
                       type="email" 
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-white placeholder:text-white/10" 
+                      className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-surface-950 dark:text-white placeholder:text-surface-400 dark:placeholder:text-white/10" 
                       placeholder="teammate@odyssey.com"
                       value={inviteEmail} 
                       onChange={e => setInviteEmail(e.target.value)} 
@@ -322,15 +322,15 @@ export default function MembersPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Workspace Role</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Workspace Role</label>
                     <select 
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-white appearance-none cursor-pointer"
+                      className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-surface-950 dark:text-white appearance-none cursor-pointer"
                       value={inviteRole} 
                       onChange={e => setInviteRole(e.target.value as any)}
                     >
-                      <option value="viewer" className="bg-surface-950">Viewer — Read access only</option>
-                      <option value="member" className="bg-surface-950">Member — Edit access</option>
-                      <option value="admin" className="bg-surface-950">Admin — Full workspace access</option>
+                      <option value="viewer" className="bg-white dark:bg-surface-950">Viewer — Read access only</option>
+                      <option value="member" className="bg-white dark:bg-surface-950">Member — Edit access</option>
+                      <option value="admin" className="bg-white dark:bg-surface-950">Admin — Full workspace access</option>
                     </select>
                   </div>
                   
@@ -338,14 +338,14 @@ export default function MembersPage() {
                     <button 
                       type="button" 
                       onClick={() => setShowInviteModal(false)} 
-                      className="flex-1 py-5 rounded-2xl border-2 border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/5 transition-all"
+                      className="flex-1 py-5 rounded-2xl border-2 border-surface-200 dark:border-white/10 text-surface-700 dark:text-white font-black text-xs uppercase tracking-widest hover:bg-surface-100 dark:hover:bg-white/5 transition-all"
                     >
                       Cancel
                     </button>
                     <button 
                       type="submit" 
                       disabled={sending} 
-                      className="flex-1 bg-white text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all shadow-xl shadow-white/5 flex items-center justify-center gap-3"
+                      className="flex-1 bg-surface-950 dark:bg-white text-white dark:text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 dark:hover:bg-brand-600 hover:text-white dark:hover:text-white transition-all shadow-xl flex items-center justify-center gap-3"
                     >
                       {sending ? <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</> : <><Mail className="w-4 h-4" /> Send Invitation</>}
                     </button>
@@ -369,29 +369,29 @@ export default function MembersPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="p-1 rounded-[3rem] bg-white/10 border border-white/20 shadow-2xl w-full max-w-lg cursor-default"
+              className="p-1 rounded-[3rem] bg-surface-100 dark:bg-white/10 border border-surface-200 dark:border-white/20 shadow-2xl w-full max-w-lg cursor-default"
             >
-              <div className="bg-surface-900 rounded-[2.8rem] p-10 md:p-12">
+              <div className="bg-white dark:bg-surface-900 rounded-[2.8rem] p-10 md:p-12">
                 <div className="mb-10 text-center">
                    <div className="w-16 h-16 rounded-3xl bg-brand-600/10 border border-brand-600/20 flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                      <Shield className="w-8 h-8 text-brand-500" />
+                      <Shield className="w-8 h-8 text-brand-600 dark:text-brand-500" />
                    </div>
-                   <h2 className="text-3xl font-black text-white mb-2">Adjust Permissions</h2>
-                   <p className="text-white/40 font-medium text-sm">Modifying access for <span className="text-white font-bold">{editingMember.name}</span></p>
+                   <h2 className="text-3xl font-black text-surface-950 dark:text-white mb-2">Adjust Permissions</h2>
+                   <p className="text-surface-500 dark:text-white/40 font-medium text-sm">Modifying access for <span className="text-surface-950 dark:text-white font-bold">{editingMember.name}</span></p>
                 </div>
 
                 <form onSubmit={handleUpdateRole} className="space-y-8">
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-3">Select New Role</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-surface-500 dark:text-white/40 mb-3">Select New Role</label>
                     <select 
-                      className="w-full bg-white/5 border-2 border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-white appearance-none cursor-pointer"
+                      className="w-full bg-surface-50 dark:bg-white/5 border-2 border-surface-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-600 focus:outline-none transition-all font-black text-surface-950 dark:text-white appearance-none cursor-pointer"
                       value={editingMember.role} 
                       onChange={e => setEditingMember({ ...editingMember, role: e.target.value })}
                     >
-                      <option value="viewer" className="bg-surface-950">Viewer — View only</option>
-                      <option value="member" className="bg-surface-950">Member — General access</option>
-                      <option value="admin" className="bg-surface-950">Admin — Full authority</option>
-                      <option value="owner" className="bg-surface-950">Owner — Root access</option>
+                      <option value="viewer" className="bg-white dark:bg-surface-950">Viewer — View only</option>
+                      <option value="member" className="bg-white dark:bg-surface-950">Member — General access</option>
+                      <option value="admin" className="bg-white dark:bg-surface-950">Admin — Full authority</option>
+                      <option value="owner" className="bg-white dark:bg-surface-950">Owner — Root access</option>
                     </select>
                   </div>
                   
@@ -399,14 +399,14 @@ export default function MembersPage() {
                     <button 
                       type="button" 
                       onClick={() => setEditingMember(null)} 
-                      className="flex-1 py-5 rounded-2xl border-2 border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/5 transition-all"
+                      className="flex-1 py-5 rounded-2xl border-2 border-surface-200 dark:border-white/10 text-surface-700 dark:text-white font-black text-xs uppercase tracking-widest hover:bg-surface-100 dark:hover:bg-white/5 transition-all"
                     >
                       Dismiss
                     </button>
                     <button 
                       type="submit" 
                       disabled={sending} 
-                      className="flex-1 bg-white text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 hover:text-white transition-all shadow-xl shadow-white/5 flex items-center justify-center gap-3"
+                      className="flex-1 bg-surface-950 dark:bg-white text-white dark:text-surface-950 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-600 dark:hover:bg-brand-600 hover:text-white dark:hover:text-white transition-all shadow-xl flex items-center justify-center gap-3"
                     >
                       {sending ? <><Loader2 className="w-4 h-4 animate-spin" /> Updating...</> : 'Apply Changes'}
                     </button>

@@ -18,18 +18,24 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
 
-    const res = await signIn('credentials', {
-      email, password, redirect: false,
-    })
+    try {
+      const res = await signIn('credentials', {
+        email, password, redirect: false,
+      })
 
-    if (res?.error) {
-      toast.error('Invalid email or password')
+      if (res?.error) {
+        toast.error('Invalid email or password')
+        setLoading(false)
+        return
+      }
+
+      toast.success('Welcome back!')
+      router.push('/dashboard')
+    } catch (error) {
+      console.error('Login error:', error)
+      toast.error('Authentication failed. Check your connection or configuration.')
       setLoading(false)
-      return
     }
-
-    toast.success('Welcome back!')
-    router.push('/dashboard')
   }
 
   return (
