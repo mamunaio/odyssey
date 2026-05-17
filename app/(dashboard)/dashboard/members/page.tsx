@@ -239,7 +239,7 @@ export default function MembersPage() {
                   <td className="px-8 py-6 text-right relative">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
-                        <button className="w-10 h-10 rounded-xl hover:bg-surface-200 dark:hover:bg-white/5 flex items-center justify-center text-surface-400 dark:text-white/20 hover:text-surface-950 dark:hover:text-white transition-all outline-none">
+                        <button className="w-10 h-10 rounded-xl bg-surface-100 dark:bg-white/5 hover:bg-surface-200 dark:hover:bg-white/10 flex items-center justify-center text-surface-950 dark:text-white/60 hover:text-brand-600 dark:hover:text-white transition-all outline-none">
                           <MoreHorizontal className="w-5 h-5" />
                         </button>
                       </DropdownMenu.Trigger>
