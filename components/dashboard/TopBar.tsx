@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { Bell, ChevronDown, LogOut, User, Settings, Search, Command, CheckCircle2, AlertCircle, Info, Zap } from 'lucide-react'
+import { Bell, ChevronDown, LogOut, User, Settings, Search, Command, CheckCircle2, AlertCircle, Info, Zap, Menu } from 'lucide-react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { cn } from '@/lib/utils'
 import toast from 'react-hot-toast'
@@ -12,6 +12,7 @@ import useSWR from 'swr'
 
 interface TopBarProps {
   user: { name?: string; email?: string; image?: string }
+  onMenuClick?: () => void
 }
 
 interface Notification {
@@ -91,9 +92,17 @@ export default function TopBar({ user }: TopBarProps) {
   }
 
   return (
-    <header className="h-20 bg-white/40 dark:bg-surface-950/40 backdrop-blur-3xl border-b border-surface-200/50 dark:border-white/5 flex items-center justify-between px-10 shrink-0 z-30 sticky top-0 transition-colors duration-300">
+    <header className="h-20 bg-white/40 dark:bg-surface-950/40 backdrop-blur-3xl border-b border-surface-200/50 dark:border-white/5 flex items-center justify-between px-4 md:px-10 shrink-0 z-30 sticky top-0 transition-colors duration-300">
       <div className="flex items-center gap-4 flex-1">
-        <div className="relative max-w-lg w-full group">
+        {onMenuClick && (
+          <button 
+            onClick={onMenuClick}
+            className="lg:hidden p-2.5 rounded-xl bg-surface-100 dark:bg-white/5 border border-surface-200 dark:border-white/10 text-surface-600 dark:text-white/60 hover:text-surface-950 dark:hover:text-white transition-colors cursor-pointer"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
+        <div className="relative max-w-lg w-full group hidden sm:block">
           <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-surface-400 dark:text-white/20 group-focus-within:text-brand-500 transition-colors" />
           <input 
             type="text" 

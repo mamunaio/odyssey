@@ -39,7 +39,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-surface-950 text-surface-950 dark:text-white font-sans flex items-center justify-center p-6 relative overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-surface-950 text-surface-950 dark:text-white font-sans flex flex-col items-center justify-center py-16 px-6 relative overflow-hidden transition-colors duration-300">
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[10%] left-[10%] w-[30%] h-[30%] bg-brand-600/10 rounded-full blur-[100px]" />

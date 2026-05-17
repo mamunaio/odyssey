@@ -21,6 +21,7 @@ import AuthProvider from '@/components/providers/SessionProvider'
 import SoundNotificationProvider from '@/components/providers/SoundNotificationProvider'
 import ThemeProvider from '@/components/providers/ThemeProvider'
 import GlobalThemeSwitcher from '@/components/dashboard/GlobalThemeSwitcher'
+import BackToTop from '@/components/shared/BackToTop'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -44,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-white dark:bg-surface-950 text-surface-950 dark:text-white transition-colors duration-300">
+      <body suppressHydrationWarning className="font-sans antialiased bg-white dark:bg-surface-950 text-surface-950 dark:text-white transition-colors duration-300">
         <ThemeProvider>
           <AuthProvider>
             {children}
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Toaster position="top-right" />
           <SoundNotificationProvider />
           <GlobalThemeSwitcher />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
